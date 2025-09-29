@@ -34,7 +34,7 @@ try
     }
 
     DateTime now = DateTime.Now;
-    if (card.ExpiryYear < now.Year || (card.ExpiryYear == now.Year && card.ExpiryMonth < card.ExpiryMonth))
+    if (card.ExpiryYear < now.Year || (card.ExpiryYear == now.Year && card.ExpiryMonth < now.Month)) 
     {
         throw new Exception("Card expired. Please try with another card.");
     }
@@ -54,16 +54,16 @@ try
     {
         Console.WriteLine();
         Console.WriteLine("Select an option:");
-        Console.WriteLine("1) Check Deposit (balances)");
-        Console.WriteLine("2) Get Amount (withdraw)");
-        Console.WriteLine("3) Get Transactions");
-        Console.WriteLine("4) Add Amount (top-up)");
+        Console.WriteLine("1) Check Deposit (balances) ");
+        Console.WriteLine("2) Get Amount (withdraw) ");
+        Console.WriteLine("3) Get Transactions ");
+        Console.WriteLine("4) Add Amount (top-up) ");
         Console.WriteLine("5) Change Pin");
-        Console.WriteLine("6) Change Amount (currency exchange)");
-        Console.WriteLine("0) Exit");
+        Console.WriteLine("6) Change Amount (currency exchange) ");
+        Console.WriteLine("0) Exit ");
         Console.Write("Your choice: ");
 
-        int operation = ReadInt("Choose the operation");
+        int operation = ReadInt("Choose the operation ");
         Console.WriteLine();
 
         try
@@ -151,7 +151,7 @@ try
                     keepGoing = false;
                     continue;
                 default:
-                    Console.WriteLine("Unknown option. Please try again.");
+                    Console.WriteLine("Unknown option. Please try again ");
                     break;
             }
         }
@@ -172,6 +172,8 @@ try
 }
 catch (Exception ex)
 {
+    Console.WriteLine();
+    Console.WriteLine("Some Error was occured! See the message bellow:");
     Console.WriteLine(ex.Message);
 }
 
@@ -183,7 +185,7 @@ int ReadInt(string prompt)
     int intInput;
     while (!int.TryParse(Console.ReadLine(), out intInput))
     {
-        Console.Write("Invalid number. Try again");
+        Console.Write("Invalid number. Try again ");
     }
     return intInput;
 }
@@ -195,7 +197,7 @@ decimal ReadDecimal(string prompt)
     decimal decimalInput;
     while (!decimal.TryParse(Console.ReadLine(), out decimalInput))
     {
-        Console.Write("Invalid amount. Try again");
+        Console.Write("Invalid amount. Try again ");
     }
     return decimalInput;
 }
@@ -203,19 +205,19 @@ decimal ReadDecimal(string prompt)
 CurrencyCode ChooseCurrency(string prompt)
 {
     Console.WriteLine(prompt);
-    Console.WriteLine("1) USD");
-    Console.WriteLine("2) EUR");
-    Console.WriteLine("3) GEL");
+    Console.WriteLine("1) GEL");
+    Console.WriteLine("2) USD");
+    Console.WriteLine("3) EUR");
 
     while (true)
     {
         int n = ReadInt("Choose 1-3: ");
         switch (n)
         {
-            case 1: return CurrencyCode.USD;
-            case 2: return CurrencyCode.EUR;
-            case 3: return CurrencyCode.GEL;
-            default: Console.WriteLine("Invalid choice. Try again."); break;
+            case 1: return CurrencyCode.GEL;
+            case 2: return CurrencyCode.USD;
+            case 3: return CurrencyCode.EUR;
+            default: Console.WriteLine("Invalid choice. Try again "); break;
         }
     }
 }
