@@ -1,5 +1,14 @@
 ﻿using FinalProject1.Enums;
 using FinalProject1.Models;
+using Serilog;
+
+Directory.CreateDirectory(Path.Combine(AppContext.BaseDirectory, "logs"));
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .WriteTo.File(
+        path: Path.Combine(AppContext.BaseDirectory, "logs", "log-.txt"),
+        rollingInterval: RollingInterval.Day)
+    .CreateLogger();
 
 try
 {
@@ -172,6 +181,8 @@ try
 }
 catch (Exception ex)
 {
+    Log.Error(ex, "Exception happened in ATM Simulator");
+
     Console.WriteLine();
     Console.WriteLine("Some Error was occured! See the message bellow:");
     Console.WriteLine(ex.Message);
